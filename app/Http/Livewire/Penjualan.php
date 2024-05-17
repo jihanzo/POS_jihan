@@ -23,7 +23,7 @@ class Penjualan extends Component
             'id_pelanggan'=>'required'
         ]);
 
-        Order::create([
+        Transaksi::create([
             'invoice'=>$this->invoice(),
             'id_pelanggan'=>$this->id_pelanggan,
             'id_user'=>Auth::user()->id,

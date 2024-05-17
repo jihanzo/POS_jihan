@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Order;
+use App\Models\Transaksi;
 use Illuminate\View\View;
-use App\Models\Order_detail;
+use App\Models\Detiltransaksi;
 
 class CetakController extends Controller
 {
@@ -15,12 +15,12 @@ class CetakController extends Controller
     {
         $id=session()->get('id');
 
-        $order=Order::find($id);
+        $transaksi=Transaksi::find($id);
         //dd ($order)
-        $orderDetail=Order_detail::where('order_id',$id)->get();
+        $detiltransaksi=Detiltransaksi::where('id_transaksi',$id)->get();
         return view('penjualan.receipt')->with([
-            'dataOrder'=>$order,
-            'dataOrderDetail'=>$orderDetail
+            'dataTransaksi'=>$transaksi,
+            'dataDetiltransaksi'=>$detiltransaksi
         ]);
     }
 }

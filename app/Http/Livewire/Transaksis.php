@@ -27,7 +27,7 @@ class Transaksis extends Component
         $this->total=$transaksi->total;
         $this->kembali=$this->uang-$this->total;
         return view('livewire.transaksis')
-        ->with("data",$order)
+        ->with("data",$transaksi)
         ->with("dataProduk",Produk::where('stok','>','0')->get())
         ->with("dataDetiltransaksi",Detiltransaksi::where('id_transaksi','=',$transaksi->id)->get());
     }
@@ -57,9 +57,9 @@ class Transaksis extends Component
         $this->qty=1;
     }
 
-    public function delete($detiltransaksi_id)
+    public function delete($id_detiltransaksi)
     {
-        $detiltransaksi=Detiltransaksi::find($detiltransaksi_id);
+        $detiltransaksi=Detiltransaksi::find($detiltransaksi);
         $detiltransaksi->delete();
 
         //update total
@@ -82,10 +82,10 @@ class Transaksis extends Component
     {
         //update stok
         $detiltransaksi=Detiltransaksi::select('*')->where('id_transaksi','=',$id)->get();
-        //dd($detiltransaksi);
+        //dd($order_detail);
         foreach ($detiltransaksi as $od) {
             $stoklama=Produk::select('stok')->where('id','=',$od->id_produk)->sum('stok');
-            $stok=$stocklama-$od->qty;
+            $stok=$stoklama-$od->qty;
             try {
                 Produk::where('id','=',$od->id_produk)->update([
                     'stok'=>$stok

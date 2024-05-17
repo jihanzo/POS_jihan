@@ -26,31 +26,31 @@ splay=swap" rel="stylesheet">
 
 <body>
     <p>
-        invoice:{{ $dataOrder->invoice}}<br>
-        Customer:{{ $dataOrder->customer->name}}<br>
-        Cashier:{{ Auth::user()->name}}<br>
-        Tanggal:{{$dataOrder->created_at->format('d M Y H:m')}}
+        invoice:{{ $dataTransaksi->invoice}}<br>
+        Pelanggan:{{ $dataTransaksi->pelanggan->nama}}<br>
+        Cashier:{{ Auth::user()->nama}}<br>
+        Tanggal:{{$dataTransaksi->created_at->format('d M Y H:m')}}
     </p>
     <table>
         <thead>
             <tr>
-                <td>Product</td>
+                <td>Produk</td>
                 <td>Qty</td>
-                <td>Price</td>
+                <td>Harga</td>
                 <td>Amount</td>
             </tr>
         </thead>
-        @foreach($dataOrderDetail as $dod)
+        @foreach($dataDetiltransaksi as $dod)
         <tr>
-            <td>{{ $dod->product->name }}</td>
+            <td>{{ $dod->produk->nama }}</td>
             <td>{{$dod->qty}}</td>
-            <td>@money($dod->price)</td>
-            <td>@money($dod->price*$dod->qty)</td>
+            <td>@money($dod->harga)</td>
+            <td>@money($dod->harga*$dod->qty)</td>
         </tr>
         @endforeach
         <tr>
             <td colspan="3">Total:</td>
-            <td>@money($dataOrder->total)</td>
+            <td>@money($dataTransaksi->total)</td>
         </tr>
     </table>
     <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
