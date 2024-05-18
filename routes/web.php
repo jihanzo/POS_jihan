@@ -30,7 +30,7 @@ Route::get('penjualan',function(){
     ]);
 })->name('penjualan')->middleware('auth');
 
-Route::get('penjualan',function(){
+Route::get('transaksi',function(){
     return view('penjualan.transaksis',[
         "title"=>"Transaksi"
     ]);

@@ -21,6 +21,6 @@ class Produk extends Model
 
     public function detiltransaksi():HasMany
     {
-        return $this->hasMany(Detiltansaksi::class);
+        return $this->hasMany(Detiltransaksi::class);
     }
 }
