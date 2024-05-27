@@ -89,7 +89,7 @@ data-accordion="false">
 <!-- Add icons to the links using the .nav-icon class
 with font-awesome or any other icon font library -->
 <li class="nav-item">
-<a href="/" class="nav-link {{ ($title==='Welcome')?'active':''
+<a href="/" class="nav-link {{ ($title==='Dashboard')?'active':''
 }}">
 <i class="nav-icon fas fa-tachometer-alt"></i>
 <p>
@@ -97,16 +97,15 @@ Dashboard
 </p>
 </a>
 </li>
-
 <li class="nav-item">
-<a href="{{ route('produk.index')}}" 
-class="nav-link {{($title==='Produk')?'active':''}}">
+<a href="{{ route('produk.index') }}" class="nav-link {{($title==='Produk')?'active':''}}">
 <i class="nav-icon fas fa-boxes"></i>
 <p>
 Produk
+<!-- <i class="fas fa-angle-left right"></i> -->
 </p>
 </a>
-
+</li>
 <li class="nav-item">
 <a href="{{ route('pelanggan.index')}}" 
 class="nav-link {{ ($title==='Pelanggan')?'active':''}}">
@@ -116,7 +115,6 @@ Pelanggan
 </p>
 </a>
 </li>
-
 <li class="nav-item">
 <a href="{{ route('pengguna.index') }}" class="nav-link {{ ($title==='Users')?'active':''}}">
 <i class="nav-icon fas fa-users"></i>
@@ -125,7 +123,6 @@ Users
 </p>
 </a>
 </li>
-
 <li class="nav-item">
 <a href="penjualan" target="_blank" class="nav-link {{ ($title==='Penjualan') ? 'active':''
 }}">
@@ -135,8 +132,7 @@ Penjualan
 </p>
 </a>
 </li>
-
-<!-- <li class="nav-item">
+<li class="nav-item">
 <a href="#" class="nav-link">
 <i class="nav-icon fas fa-table"></i>
 <p>
@@ -166,7 +162,7 @@ Laporan
 </ul>
 </li>
 </ul>
-</nav> -->
+</nav>
 <!-- /.sidebar-menu -->
 </div>
 <!-- /.sidebar -->

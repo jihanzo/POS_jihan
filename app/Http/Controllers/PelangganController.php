@@ -32,7 +32,7 @@ class PelangganController extends Controller
             $request->validate([
             "nama"=>"required",
             "alamat"=>"required",
-            "no hp"=>"nullable"
+            "nohp"=>"nullable"
         ]);
 
         Pelanggan::create($request->all());
@@ -49,7 +49,7 @@ class PelangganController extends Controller
                 $request->validate([
                 "nama"=>"required",
                 "alamat"=>"required",
-                "no hp"=>"nullable"
+                "nohp"=>"nullable"
             ]);
     
             $pelanggan->update($request->all());

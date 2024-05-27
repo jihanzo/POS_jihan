@@ -17,10 +17,10 @@ class CetakController extends Controller
 
         $transaksi=Transaksi::find($id);
         //dd ($order)
-        $detiltransaksi=Detiltransaksi::where('id_transaksi',$id)->get();
+        $Detiltransaksi=Detiltransaksi::where('id_transaksi',$id)->get();
         return view('penjualan.receipt')->with([
             'dataTransaksi'=>$transaksi,
-            'dataDetiltransaksi'=>$detiltransaksi
+            'dataDetiltransaksi'=>$Detiltransaksi
         ]);
     }
 }

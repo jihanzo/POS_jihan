@@ -57,15 +57,15 @@ class Transaksis extends Component
         $this->qty=1;
     }
 
-    public function delete($id_Detiltransaksi)
+    public function delete($id_detiltransaksi)
     {
-        $Detiltransaksi=Detiltransaksi::find($Detiltransaksi);
-        $Detiltransaksi->delete();
+        $detiltransaksi=Detiltransaksi::find($id_detiltransaksi);
+        $detiltransaksi->delete();
 
         //update total
-        $Detiltransaksi=Detiltransaksi::select('*')->where('id_transaksi','=',$this->id_transaksi)->get();
+        $detiltransaksi=Detiltransaksi::select('*')->where('id_transaksi','=',$this->id_transaksi)->get();
         $total=0;
-        foreach($Detiltransaksi as $od){
+        foreach($detiltransaksi as $od){
             $total+=$od->qty*$od->harga;
         }
 
@@ -81,9 +81,9 @@ class Transaksis extends Component
     public function receipt($id)
     {
         //update stok
-        $Detiltransaksi=Detiltransaksi::select('*')->where('id_transaksi','=',$id)->get();
+        $detiltransaksi=Detiltransaksi::select('*')->where('id_transaksi','=',$id)->get();
         //dd($order_detail);
-        foreach ($Detiltransaksi as $od) {
+        foreach ($detiltransaksi as $od) {
             $stoklama=Produk::select('stok')->where('id','=',$od->id_produk)->sum('stok');
             $stok=$stoklama-$od->qty;
             try {
