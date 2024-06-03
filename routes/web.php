@@ -19,7 +19,7 @@ use App\Http\Controllers\CetakController;
 */
 
 Route::get('/', function () {
-    return view('dashboard', [
+    return view('welcome', [
         "title" => "Dashboard"
     ]);
 })->middleware('auth');

@@ -27,7 +27,7 @@ splay=swap" rel="stylesheet">
 <body>
     <p>
         invoice:{{ $dataTransaksi->invoice}}<br>
-        Pelanggan:{{ $dataTransaksi->pelanggan->nama}}<br>
+        Pelanggan:{{ $dataTransaksi->nama}}<br>
         Cashier:{{ Auth::user()->nama}}<br>
         Tanggal:{{$dataTransaksi->created_at->format('d M Y H:m')}}
     </p>
@@ -42,7 +42,7 @@ splay=swap" rel="stylesheet">
         </thead>
         @foreach($dataDetiltransaksi as $dod)
         <tr>
-            <td>{{ $dod->produk->nama }}</td>
+            <td>{{ $dod->nama }}</td>
             <td>{{$dod->qty}}</td>
             <td>@money($dod->harga)</td>
             <td>@money($dod->harga*$dod->qty)</td>

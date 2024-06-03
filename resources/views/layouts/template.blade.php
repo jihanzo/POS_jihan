@@ -99,7 +99,7 @@ Dashboard
 </li>
 <li class="nav-item">
 <a href="{{ route('produk.index') }}" class="nav-link {{($title==='Produk')?'active':''}}">
-<i class="nav-icon fas fa-boxes"></i>
+<i class="nav-icon fas fa-folder"></i>
 <p>
 Produk
 <!-- <i class="fas fa-angle-left right"></i> -->
