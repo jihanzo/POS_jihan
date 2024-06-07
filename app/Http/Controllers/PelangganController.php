@@ -1,63 +1,61 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Pelanggan;
-use Illuminate\Http\RedirectResponse as HttpRedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
-use Iluminate\Http\RedirectResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse as HttpFoundationRedirectResponse;
 
-use function PHPUnit\Framework\returnValueMap;
+use Illuminate\Http\Request;
+use App\Models\Pelanggan;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class PelangganController extends Controller
 {
     //
-
     public function index()
     {
-        return view('pelanggan.tabel', [
-        "title" => "Pelanggan",
-        "data" => Pelanggan::all()
+        return view('pelanggan.index', [
+            "title" => "Pelanggan",
+            "data" => Pelanggan::all()
         ]);
-    }
-
+    }    
     public function create():View
     {
-        return view('pelanggan.tambah')->with(["title" => "Tambah Data Pelanggan"]);
+        return view('pelanggan.index')->with(["title" => "Tambah Data Pelanggan"]);
     }
-    public function store(Request $request): HttpRedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-            $request->validate([
+        $request->validate([
             "nama"=>"required",
-            "alamat"=>"required",
-            "nohp"=>"nullable"
         ]);
+        if (empty($request['nohp'])) {
+            $request['nohp']='null';
+        if (empty($request['alamat'])) 
+            $request['alamat']='null';
+        }
 
         Pelanggan::create($request->all());
-        return redirect()->route ('pelanggan.index')->with('success','Data Pelanggan Berhasil Ditambahkan');
+        return redirect()->route('pelanggan.index')->with('success','Data Pelanggan Berhasil Ditambahkan');
     }
-    
+
     public function edit(Pelanggan $pelanggan):View
     {
-        return view('pelanggan.edit',compact('pelanggan'))->with(["title" => " Ubah Data Pelanggan"]);
+        return view('pelanggan.editpelanggan',compact('pelanggan'))->with([
+            "title" => "Ubah Data Pelanggan",
+        ]);
     }
-        
-        public function update(Request $request, Pelanggan $pelanggan): HttpRedirectResponse
-        {
-                $request->validate([
-                "nama"=>"required",
-                "alamat"=>"required",
-                "nohp"=>"nullable"
-            ]);
-    
-            $pelanggan->update($request->all());
-            return redirect()->route ('pelanggan.index')->with('Updated','Data Pelanggan Berhasil Diubah');
+    public function update(Pelanggan $pelanggan, Request $request):RedirectResponse
+    {
+        $request->validate([
+            "nama"=>"required",
+        ]);
+        if (empty($request['nohp'])) {
+            $request['nohp']='null';
+        if (empty($request['alamat'])) 
+            $request['alamat']='null';
         }
-        public function show(Pelanggan $pelanggan):View
-        {
-            return view('pelanggan.tampil',compact('pelanggan'))->with(["title" => "Data Pelanggan"]);
-        }
-        
+
+        $pelanggan->update($request->all());
+        return redirect()->route('pelanggan.index')->with('updated','Data Pelanggan Berhasil Diubah');
+    }
+
+
 }
